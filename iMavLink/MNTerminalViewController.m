@@ -17,6 +17,7 @@
 - (void)connectTo3DRRadio;
 - (void)updateConnectButton;
 - (void)scrollTerminalTextViewToBottom;
+- (NSString *)hexStringFromData:(NSData *)data withNewLines:(int)newLinesCount;
 
 @end
 
@@ -126,6 +127,26 @@
     [self scrollTerminalTextViewToBottom];
 }
 
+- (NSString *)hexStringFromData:(NSData *)data withNewLines:(int)newLinesCount
+{
+    // Build the hex string
+    NSUInteger dataLength = [data length];
+    NSMutableString *string = [NSMutableString stringWithCapacity:dataLength * 2];
+    const unsigned char *dataBytes = [data bytes];
+    for (int i = 0; i < dataLength; ++ i)
+    {
+        [string appendFormat:@"0x%02x ", dataBytes[i]];
+    }
+    
+    // Add the new lines
+    for(int i = 0; i < newLinesCount; i ++)
+    {
+        [string appendString:@"\n"];
+    }
+    
+    return (NSString *)string;
+}
+
 #pragma mark - Socket Delegate
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
@@ -169,14 +190,7 @@
      Checksum: For error detection.*/
     
     // Make a nice NSString with formatted hex data
-    NSUInteger dataLength = [data length];
-    NSMutableString *string = [NSMutableString stringWithCapacity:dataLength*2];
-    const unsigned char *dataBytes = [data bytes];
-    for (NSInteger idx = 0; idx < dataLength; ++idx)
-    {
-        [string appendFormat:@"0x%02x ", dataBytes[idx]];
-    }
-    [string appendString:@"\n\n"];
+    NSString *string = [self hexStringFromData:data withNewLines:2];
     NSLog(@"Response:%@", string);
     
     // Print the hex string to the console
