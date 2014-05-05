@@ -12,12 +12,10 @@
 #define HOST @"198.18.0.1"
 #define HOST_PORT 2000
 
-@interface MNTerminalViewController ()
+#define MAVLINK_PACKET_HEADER_LENGTH 6
+#define MAVLINK_PACKET_CHECKSUM_LENGTH 2
 
-- (void)connectTo3DRRadio;
-- (void)updateConnectButton;
-- (void)scrollTerminalTextViewToBottom;
-- (NSString *)hexStringFromData:(NSData *)data withNewLines:(int)newLinesCount;
+@interface MNTerminalViewController ()
 
 @end
 
@@ -124,7 +122,7 @@
     self.terminalTextView.attributedText = newASCIIText;
     
     // Scroll the textView
-    [self scrollTerminalTextViewToBottom];
+    //[self scrollTerminalTextViewToBottom];
 }
 
 - (NSString *)hexStringFromData:(NSData *)data withNewLines:(int)newLinesCount
@@ -133,7 +131,7 @@
     NSUInteger dataLength = [data length];
     NSMutableString *string = [NSMutableString stringWithCapacity:dataLength * 2];
     const unsigned char *dataBytes = [data bytes];
-    for (int i = 0; i < dataLength; ++ i)
+    for (int i = 0; i < dataLength; i ++)
     {
         [string appendFormat:@"0x%02x ", dataBytes[i]];
     }
@@ -145,6 +143,92 @@
     }
     
     return (NSString *)string;
+}
+
+// Returns an array of strings
+- (NSMutableArray *)mavlinkPacketsAsStringsFromData:(NSData *)data withNewLines:(int)newLinesCount
+{
+    /*
+     // MAVLink packeet description
+     message length = 17 (6 bytes header + 9 bytes payload + 2 bytes checksum)
+     ￼￼
+     6 bytes header
+     
+     0. message header, always 0xFE
+     1. message length (9)
+     2. sequence number -- rolls around from 255 to 0 (0x4e, previous was 0x4d)
+     3. System ID - what system is sending this message (1)
+     4. Component ID- what component of the system is sending the message (1)
+     5. Message ID (e.g. 0 = heartbeat and many more! Don’t be shy, you can add too..)
+     
+     Variable Sized Payload (specified in octet 1, range 0..255) ** Payload (the actual data we are interested in)
+     
+     Checksum: For error detection.
+     */
+    
+    NSMutableArray *mavlinkPacketStrings = [[NSMutableArray alloc] init];
+    NSUInteger dataLength = [data length];
+    
+    do
+    {
+        // Build the hex string
+        NSMutableString *string = [[NSMutableString alloc] initWithString:@""];
+        const unsigned char *dataBytes = [data bytes];
+        
+        // TODO: Add checksum logic in here somewhere
+        
+        // See if it's a valid message header
+        if(dataBytes[0] == 0xFE)
+        {
+            /*
+             char messageBytes[dataLength * 2];
+             char packetHeader = dataBytes[0];
+             char packetLength = dataBytes[1];
+             char packetSequenceNumber = dataBytes[2];
+             char packetSystemID = dataBytes[3];
+             char packetComponentID = dataBytes[4];
+             char packetMessageID = dataBytes[5];
+             
+             for (int i = 6; i < packetLength + 6; i ++)
+             {
+             messageBytes[i - 6] = dataBytes[i];
+             }
+             */
+            
+            // Build the string
+            char packetLength = dataBytes[1];
+            int totalPacketLength = MAVLINK_PACKET_HEADER_LENGTH + packetLength + MAVLINK_PACKET_CHECKSUM_LENGTH;
+            
+            for(int i = 0; i < totalPacketLength; i ++)
+            {
+                [string appendFormat:@"0x%02x ", dataBytes[i]];
+            }
+            
+            // Add the new lines
+            for(int i = 0; i < newLinesCount; i ++)
+            {
+                [string appendString:@"\n"];
+            }
+            
+            // Remove this packet from the data
+            NSRange theRestOfTheDataRange;
+            theRestOfTheDataRange.location = totalPacketLength;
+            theRestOfTheDataRange.length = dataLength - totalPacketLength;
+            data = [data subdataWithRange:theRestOfTheDataRange];
+            dataLength = [data length];
+            
+            // Add the string the to array
+            [mavlinkPacketStrings addObject:string];
+        }
+        else
+        {
+            break;
+        }
+        
+    } while(dataLength > 0);
+    
+    
+    return mavlinkPacketStrings;
 }
 
 #pragma mark - Socket Delegate
@@ -172,29 +256,19 @@
 {
 	//NSLog(@"didReadData:%@ withTag:%ld", [data description], tag);
     
-    /*
-     // MAVLink packeet description
-     message length = 17 (6 bytes header + 9 bytes payload + 2 bytes checksum)
-     ￼￼
-     6 bytes header
-     
-     0. message header, always 0xFE
-     1. message length (9)
-     2. sequence number -- rolls around from 255 to 0 (0x4e, previous was 0x4d)
-     3. System ID - what system is sending this message (1)
-     4. Component ID- what component of the system is sending the message (1)
-     5. Message ID (e.g. 0 = heartbeat and many more! Don’t be shy, you can add too..)
-     
-     Variable Sized Payload (specified in octet 1, range 0..255) ** Payload (the actual data we are interested in)
-     
-     Checksum: For error detection.*/
-    
     // Make a nice NSString with formatted hex data
     NSString *string = [self hexStringFromData:data withNewLines:2];
     NSLog(@"Response:%@", string);
     
     // Print the hex string to the console
     [self writeStringToConsole:string color:nil];
+    
+    NSMutableArray *packets = [self mavlinkPacketsAsStringsFromData:data withNewLines:2];
+    for(NSString *packet in packets)
+    {
+        [self writeStringToConsole:packet color:[UIColor blueColor]];
+        NSLog(@"Packet:%@", packet);
+    }
     
     // Keep reading data
     [self.socket readDataWithTimeout:-1 tag:0];

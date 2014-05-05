@@ -16,21 +16,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KiH-Pz-rep">
-                                <rect key="frame" x="0.0" y="87" width="320" height="432"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <connections>
-                                    <outlet property="delegate" destination="CZ4-MO-1fc" id="Ztm-Qc-eJL"/>
-                                </connections>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEz-lf-z36">
                                 <rect key="frame" x="107" y="20" width="106" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="106" id="lyf-ad-8pJ"/>
+                                    <constraint firstAttribute="width" constant="106" id="goX-RO-Cvk"/>
                                 </constraints>
                                 <state key="normal" title="Connect">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -43,7 +33,7 @@
                                 <rect key="frame" x="20" y="58" width="61" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="61" id="kb0-wu-pA4"/>
+                                    <constraint firstAttribute="width" constant="61" id="uLb-HW-8tX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -55,9 +45,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgc-0o-WzF">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgc-0o-WzF">
                                 <rect key="frame" x="254" y="49" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="RDm-dB-ddY"/>
+                                </constraints>
                                 <state key="normal" title="Clear">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -65,20 +58,32 @@
                                     <action selector="clearButtonPress:" destination="CZ4-MO-1fc" eventType="touchUpInside" id="5ag-v3-ghq"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WrT-WH-1tb">
+                                <rect key="frame" x="0.0" y="87" width="320" height="412"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="CZ4-MO-1fc" id="rwQ-lu-2J9"/>
+                                </connections>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="oEz-lf-z36" firstAttribute="top" secondItem="2VE-Yg-loa" secondAttribute="top" constant="20" symbolic="YES" id="ATh-3I-zWU"/>
-                            <constraint firstItem="Vhj-Is-byA" firstAttribute="top" secondItem="oEz-lf-z36" secondAttribute="bottom" constant="8" symbolic="YES" id="CC2-Ah-5uf"/>
-                            <constraint firstAttribute="trailing" secondItem="Vhj-Is-byA" secondAttribute="trailing" constant="20" symbolic="YES" id="EtZ-c8-xhD"/>
-                            <constraint firstItem="KiH-Pz-rep" firstAttribute="leading" secondItem="2VE-Yg-loa" secondAttribute="leading" id="JTC-CP-caU"/>
-                            <constraint firstItem="KiH-Pz-rep" firstAttribute="top" secondItem="cHi-dk-ePj" secondAttribute="bottom" constant="8" symbolic="YES" id="Vsx-o5-lNu"/>
-                            <constraint firstAttribute="trailing" secondItem="KiH-Pz-rep" secondAttribute="trailing" id="aOz-X5-Vd9"/>
-                            <constraint firstItem="cHi-dk-ePj" firstAttribute="leading" secondItem="2VE-Yg-loa" secondAttribute="leading" constant="20" symbolic="YES" id="fVY-j7-PN4"/>
-                            <constraint firstAttribute="bottom" secondItem="KiH-Pz-rep" secondAttribute="bottom" id="gAM-Ep-sw1"/>
-                            <constraint firstItem="Vhj-Is-byA" firstAttribute="leading" secondItem="cHi-dk-ePj" secondAttribute="trailing" constant="8" symbolic="YES" id="qa1-Lo-jTA"/>
-                            <constraint firstItem="KiH-Pz-rep" firstAttribute="centerX" secondItem="oEz-lf-z36" secondAttribute="centerX" id="x2F-kd-THe"/>
-                            <constraint firstItem="cHi-dk-ePj" firstAttribute="baseline" secondItem="Vhj-Is-byA" secondAttribute="baseline" id="z13-W3-c7L"/>
+                            <constraint firstItem="oEz-lf-z36" firstAttribute="centerX" secondItem="WrT-WH-1tb" secondAttribute="centerX" id="8RE-Jc-sop"/>
+                            <constraint firstAttribute="trailing" secondItem="xgc-0o-WzF" secondAttribute="trailing" constant="20" symbolic="YES" id="DN0-zU-K4W"/>
+                            <constraint firstItem="WrT-WH-1tb" firstAttribute="leading" secondItem="2VE-Yg-loa" secondAttribute="leading" id="TU1-RY-hEO"/>
+                            <constraint firstItem="oEz-lf-z36" firstAttribute="top" secondItem="2VE-Yg-loa" secondAttribute="top" constant="20" symbolic="YES" id="V7T-Yb-eWI"/>
+                            <constraint firstItem="Vhj-Is-byA" firstAttribute="top" secondItem="oEz-lf-z36" secondAttribute="bottom" constant="8" symbolic="YES" id="VQX-Qd-r7g"/>
+                            <constraint firstAttribute="trailing" secondItem="WrT-WH-1tb" secondAttribute="trailing" id="XNn-uy-hr6"/>
+                            <constraint firstItem="cHi-dk-ePj" firstAttribute="leading" secondItem="2VE-Yg-loa" secondAttribute="leading" constant="20" symbolic="YES" id="YH5-05-3Bo"/>
+                            <constraint firstItem="cHi-dk-ePj" firstAttribute="baseline" secondItem="Vhj-Is-byA" secondAttribute="baseline" id="bu7-X6-f7w"/>
+                            <constraint firstItem="WrT-WH-1tb" firstAttribute="top" secondItem="cHi-dk-ePj" secondAttribute="bottom" constant="8" symbolic="YES" id="dGs-uV-BOV"/>
+                            <constraint firstItem="WrT-WH-1tb" firstAttribute="top" secondItem="xgc-0o-WzF" secondAttribute="bottom" constant="8" symbolic="YES" id="ezS-zi-uKE"/>
+                            <constraint firstItem="Vhj-Is-byA" firstAttribute="trailing" secondItem="xgc-0o-WzF" secondAttribute="trailing" id="iFZ-Ti-3Ou"/>
+                            <constraint firstItem="Vhj-Is-byA" firstAttribute="leading" secondItem="cHi-dk-ePj" secondAttribute="trailing" constant="8" symbolic="YES" id="iUR-hw-bHO"/>
+                            <constraint firstItem="dtj-EO-iXF" firstAttribute="top" secondItem="WrT-WH-1tb" secondAttribute="bottom" constant="20" id="xJG-xi-yRf"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Terminal" image="first" id="u1e-5L-l1D"/>
@@ -87,7 +92,7 @@
                         <outlet property="clearButton" destination="xgc-0o-WzF" id="bKO-TX-b0i"/>
                         <outlet property="connectDisconnectButton" destination="oEz-lf-z36" id="DeR-GJ-74D"/>
                         <outlet property="statusLabel" destination="Vhj-Is-byA" id="DeB-qu-w1R"/>
-                        <outlet property="terminalTextView" destination="KiH-Pz-rep" id="4IF-Go-mNK"/>
+                        <outlet property="terminalTextView" destination="WrT-WH-1tb" id="nzo-Xe-11W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qh2-T1-AhA" sceneMemberID="firstResponder"/>
