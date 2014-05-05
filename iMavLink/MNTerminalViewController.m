@@ -257,11 +257,11 @@
 	//NSLog(@"didReadData:%@ withTag:%ld", [data description], tag);
     
     // Make a nice NSString with formatted hex data
-    NSString *string = [self hexStringFromData:data withNewLines:2];
+    /*NSString *string = [self hexStringFromData:data withNewLines:2];
     NSLog(@"Response:%@", string);
     
     // Print the hex string to the console
-    [self writeStringToConsole:string color:nil];
+    [self writeStringToConsole:string color:nil];*/
     
     NSMutableArray *packets = [self mavlinkPacketsAsStringsFromData:data withNewLines:2];
     for(NSString *packet in packets)
