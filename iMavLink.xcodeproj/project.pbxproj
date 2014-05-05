@@ -15,7 +15,7 @@
 		1A9B354B1917641D003FC375 /* MNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B354A1917641D003FC375 /* MNAppDelegate.m */; };
 		1A9B354E1917641D003FC375 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9B354C1917641D003FC375 /* Main_iPhone.storyboard */; };
 		1A9B35511917641D003FC375 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9B354F1917641D003FC375 /* Main_iPad.storyboard */; };
-		1A9B35541917641D003FC375 /* MNFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B35531917641D003FC375 /* MNFirstViewController.m */; };
+		1A9B35541917641D003FC375 /* MNTerminalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B35531917641D003FC375 /* MNTerminalViewController.m */; };
 		1A9B35571917641D003FC375 /* MNSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B35561917641D003FC375 /* MNSecondViewController.m */; };
 		1A9B35591917641D003FC375 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A9B35581917641D003FC375 /* Images.xcassets */; };
 		1A9B35601917641D003FC375 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9B355F1917641D003FC375 /* XCTest.framework */; };
@@ -23,6 +23,10 @@
 		1A9B35621917641D003FC375 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9B353E1917641D003FC375 /* UIKit.framework */; };
 		1A9B356A1917641D003FC375 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A9B35681917641D003FC375 /* InfoPlist.strings */; };
 		1A9B356C1917641D003FC375 /* iMavLinkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B356B1917641D003FC375 /* iMavLinkTests.m */; };
+		1A9B357619176623003FC375 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9B357519176623003FC375 /* Security.framework */; };
+		1A9B35781917662C003FC375 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9B35771917662C003FC375 /* CFNetwork.framework */; };
+		1A9B3585191768F8003FC375 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B3582191768F8003FC375 /* GCDAsyncSocket.m */; };
+		1A9B3586191768F8003FC375 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B3584191768F8003FC375 /* GCDAsyncUdpSocket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,8 +52,8 @@
 		1A9B354A1917641D003FC375 /* MNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MNAppDelegate.m; sourceTree = "<group>"; };
 		1A9B354D1917641D003FC375 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		1A9B35501917641D003FC375 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		1A9B35521917641D003FC375 /* MNFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNFirstViewController.h; sourceTree = "<group>"; };
-		1A9B35531917641D003FC375 /* MNFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MNFirstViewController.m; sourceTree = "<group>"; };
+		1A9B35521917641D003FC375 /* MNTerminalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNTerminalViewController.h; sourceTree = "<group>"; };
+		1A9B35531917641D003FC375 /* MNTerminalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MNTerminalViewController.m; sourceTree = "<group>"; };
 		1A9B35551917641D003FC375 /* MNSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNSecondViewController.h; sourceTree = "<group>"; };
 		1A9B35561917641D003FC375 /* MNSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MNSecondViewController.m; sourceTree = "<group>"; };
 		1A9B35581917641D003FC375 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -58,6 +62,12 @@
 		1A9B35671917641D003FC375 /* iMavLinkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iMavLinkTests-Info.plist"; sourceTree = "<group>"; };
 		1A9B35691917641D003FC375 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1A9B356B1917641D003FC375 /* iMavLinkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iMavLinkTests.m; sourceTree = "<group>"; };
+		1A9B357519176623003FC375 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		1A9B35771917662C003FC375 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		1A9B3581191768F8003FC375 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		1A9B3582191768F8003FC375 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		1A9B3583191768F8003FC375 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		1A9B3584191768F8003FC375 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A9B35781917662C003FC375 /* CFNetwork.framework in Frameworks */,
+				1A9B357619176623003FC375 /* Security.framework in Frameworks */,
 				1A9B353D1917641D003FC375 /* CoreGraphics.framework in Frameworks */,
 				1A9B353F1917641D003FC375 /* UIKit.framework in Frameworks */,
 				1A9B353B1917641D003FC375 /* Foundation.framework in Frameworks */,
@@ -106,6 +118,8 @@
 		1A9B35391917641D003FC375 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1A9B35771917662C003FC375 /* CFNetwork.framework */,
+				1A9B357519176623003FC375 /* Security.framework */,
 				1A9B353A1917641D003FC375 /* Foundation.framework */,
 				1A9B353C1917641D003FC375 /* CoreGraphics.framework */,
 				1A9B353E1917641D003FC375 /* UIKit.framework */,
@@ -121,10 +135,8 @@
 				1A9B354A1917641D003FC375 /* MNAppDelegate.m */,
 				1A9B354C1917641D003FC375 /* Main_iPhone.storyboard */,
 				1A9B354F1917641D003FC375 /* Main_iPad.storyboard */,
-				1A9B35521917641D003FC375 /* MNFirstViewController.h */,
-				1A9B35531917641D003FC375 /* MNFirstViewController.m */,
-				1A9B35551917641D003FC375 /* MNSecondViewController.h */,
-				1A9B35561917641D003FC375 /* MNSecondViewController.m */,
+				1A9B357F19176643003FC375 /* WiFi Socket */,
+				1A9B35801917664E003FC375 /* ViewControllers */,
 				1A9B35581917641D003FC375 /* Images.xcassets */,
 				1A9B35411917641D003FC375 /* Supporting Files */,
 			);
@@ -158,6 +170,28 @@
 				1A9B35681917641D003FC375 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1A9B357F19176643003FC375 /* WiFi Socket */ = {
+			isa = PBXGroup;
+			children = (
+				1A9B3581191768F8003FC375 /* GCDAsyncSocket.h */,
+				1A9B3582191768F8003FC375 /* GCDAsyncSocket.m */,
+				1A9B3583191768F8003FC375 /* GCDAsyncUdpSocket.h */,
+				1A9B3584191768F8003FC375 /* GCDAsyncUdpSocket.m */,
+			);
+			name = "WiFi Socket";
+			sourceTree = "<group>";
+		};
+		1A9B35801917664E003FC375 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1A9B35521917641D003FC375 /* MNTerminalViewController.h */,
+				1A9B35531917641D003FC375 /* MNTerminalViewController.m */,
+				1A9B35551917641D003FC375 /* MNSecondViewController.h */,
+				1A9B35561917641D003FC375 /* MNSecondViewController.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,8 +294,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A9B35471917641D003FC375 /* main.m in Sources */,
+				1A9B3585191768F8003FC375 /* GCDAsyncSocket.m in Sources */,
 				1A9B35571917641D003FC375 /* MNSecondViewController.m in Sources */,
-				1A9B35541917641D003FC375 /* MNFirstViewController.m in Sources */,
+				1A9B35541917641D003FC375 /* MNTerminalViewController.m in Sources */,
+				1A9B3586191768F8003FC375 /* GCDAsyncUdpSocket.m in Sources */,
 				1A9B354B1917641D003FC375 /* MNAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
