@@ -128,6 +128,7 @@
 	NSLog(@"didConnectToHost:%@ port:%hu", host, port);
 	self.statusLabel.text = @"Connected";
     self.connected = YES;
+    [self writeStringToConsole:@"Connected!" color:[UIColor greenColor]];
     [self updateConnectButton];
 }
 
@@ -162,6 +163,7 @@
      
      Checksum: For error detection.*/
     
+    // Make a nice NSString with formatted hex data
     NSUInteger dataLength = [data length];
     NSMutableString *string = [NSMutableString stringWithCapacity:dataLength*2];
     const unsigned char *dataBytes = [data bytes];
@@ -172,8 +174,10 @@
     [string appendString:@"\n\n"];
     NSLog(@"Response:%@", string);
     
+    // Print the hex string to the console
     [self writeStringToConsole:string color:nil];
     
+    // Keep reading data
     [self.socket readDataWithTimeout:-1 tag:0];
 }
 
@@ -187,6 +191,7 @@
 	NSLog(@"DidDisconnectWithError: %@", err);
     self.statusLabel.text = @"Disconnected";
     self.connected = NO;
+    [self writeStringToConsole:@"Disconnected!" color:[UIColor redColor]];
     [self updateConnectButton];
 }
 
