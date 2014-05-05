@@ -52,6 +52,11 @@
     }
 }
 
+- (IBAction)clearButtonPress:(id)sender
+{
+    self.terminalTextView.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:nil];
+}
+
 #pragma mark - Private Methods
 
 - (void)connectTo3DRRadio

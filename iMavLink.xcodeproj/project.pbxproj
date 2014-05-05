@@ -133,8 +133,7 @@
 			children = (
 				1A9B35491917641D003FC375 /* MNAppDelegate.h */,
 				1A9B354A1917641D003FC375 /* MNAppDelegate.m */,
-				1A9B354C1917641D003FC375 /* Main_iPhone.storyboard */,
-				1A9B354F1917641D003FC375 /* Main_iPad.storyboard */,
+				1A9B358719176BBD003FC375 /* Views */,
 				1A9B357F19176643003FC375 /* WiFi Socket */,
 				1A9B35801917664E003FC375 /* ViewControllers */,
 				1A9B35581917641D003FC375 /* Images.xcassets */,
@@ -192,6 +191,15 @@
 				1A9B35561917641D003FC375 /* MNSecondViewController.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1A9B358719176BBD003FC375 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1A9B354C1917641D003FC375 /* Main_iPhone.storyboard */,
+				1A9B354F1917641D003FC375 /* Main_iPad.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
