@@ -10,7 +10,7 @@
 
 @class GCDAsyncSocket;
 
-@interface MNTerminalViewController : UIViewController <UITextViewDelegate>
+@interface MNTerminalViewController : UIViewController <UITextViewDelegate, NSXMLParserDelegate>
 
 @property(strong, nonatomic) IBOutlet UITextView *terminalTextView;
 @property(strong, nonatomic) IBOutlet UIButton *connectDisconnectButton;

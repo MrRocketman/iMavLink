@@ -10,12 +10,22 @@
 #import "GCDAsyncSocket.h"
 
 #define HOST @"198.18.0.1"
-#define HOST_PORT 2000
+#define HOST_SOCKET_PORT 2000
+
+#define ARDUPILOT_MESSAGE_DEFINITIONS_URL @"https://raw.githubusercontent.com/diydrones/ardupilot/master/libraries/GCS_MAVLink/message_definitions/ardupilotmega.xml"
+#define AUTOQUAD_MESSAGE_DEFINITIONS_URL @"https://raw.githubusercontent.com/diydrones/ardupilot/master/libraries/GCS_MAVLink/message_definitions/autoquad.xml"
+#define COMMON_MESSAGE_DEFINITIONS_URL @"https://raw.githubusercontent.com/diydrones/ardupilot/master/libraries/GCS_MAVLink/message_definitions/common.xml"
+#define MINIMAL_MESSAGE_DEFINITIONS_URL @"https://raw.githubusercontent.com/diydrones/ardupilot/master/libraries/GCS_MAVLink/message_definitions/minimal.xml"
+#define PIXHAWK_MESSAGE_DEFINITIONS_URL @"https://raw.githubusercontent.com/diydrones/ardupilot/master/libraries/GCS_MAVLink/message_definitions/pixhawk.xml"
+#define TEST_MESSAGE_DEFINITIONS_URL @"https://raw.githubusercontent.com/diydrones/ardupilot/master/libraries/GCS_MAVLink/message_definitions/test.xml"
 
 #define MAVLINK_PACKET_HEADER_LENGTH 6
 #define MAVLINK_PACKET_CHECKSUM_LENGTH 2
 
 @interface MNTerminalViewController ()
+
+@property(strong, nonatomic) NSString *currentElement;
+@property(strong, nonatomic) NSMutableString *stringForCurrentElement;
 
 @end
 
@@ -29,12 +39,105 @@
     
     dispatch_queue_t mainQueue = dispatch_get_main_queue();
 	self.socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:mainQueue];
+    
+    // Test parsing html
+    self.stringForCurrentElement = [NSMutableString new];
+    [self parseDocumentWithURL:[NSURL URLWithString:COMMON_MESSAGE_DEFINITIONS_URL]];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - XML Parsing
+
+-(BOOL)parseDocumentWithURL:(NSURL *)url
+{
+    if (url == nil)
+    {
+        return NO;
+    }
+    
+    // this is the parsing machine
+    NSXMLParser *xmlparser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+    
+    // this class will handle the events
+    [xmlparser setDelegate:self];
+    [xmlparser setShouldResolveExternalEntities:NO];
+    
+    // now parse the document
+    BOOL ok = [xmlparser parse];
+    if (ok == NO)
+        NSLog(@"error");
+    else
+        NSLog(@"OK");
+    
+    return ok;
+}
+
+-(void)parserDidStartDocument:(NSXMLParser *)parser
+{
+    NSLog(@"didStartDocument");
+}
+
+-(void)parserDidEndDocument:(NSXMLParser *)parser
+{
+    NSLog(@"didEndDocument");
+}
+
+-(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
+{
+    NSLog(@"didStartElement: %@", elementName);
+    
+    if (namespaceURI != nil)
+        NSLog(@"namespace: %@", namespaceURI);
+    
+    if (qName != nil)
+        NSLog(@"qualifiedName: %@", qName);
+    
+    // print all attributes for this element
+    NSEnumerator *attribs = [attributeDict keyEnumerator];
+    NSString *key, *value;
+    
+    while((key = [attribs nextObject]) != nil)
+    {
+        value = [attributeDict objectForKey:key];
+        NSLog(@"  attribute: %@ = %@", key, value);
+    }
+    
+    // add code here to load any data members
+    // that your custom class might have
+    self.currentElement = elementName;
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+{
+    if(self.currentElement != nil)
+    {
+        [self.stringForCurrentElement appendString:string];
+    }
+}
+
+-(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
+    NSLog(@"read: %@", self.stringForCurrentElement);
+    // Erase the string
+    [self.stringForCurrentElement setString:@""];
+    
+    NSLog(@"didEndElement: %@", elementName);
+}
+
+// error handling
+-(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
+{
+    NSLog(@"XMLParser error: %@", [parseError localizedDescription]);
+}
+
+-(void)parser:(NSXMLParser *)parser validationErrorOccurred:(NSError *)validationError
+{
+    NSLog(@"XMLParser error: %@", [validationError localizedDescription]);
 }
 
 #pragma mark - IBActions
@@ -61,7 +164,7 @@
 - (void)connectTo3DRRadio
 {
     NSString *host = HOST;
-    uint16_t hostPort = HOST_PORT;
+    uint16_t hostPort = (uint16_t)HOST_SOCKET_PORT;
     
     NSLog(@"Connecting to \"%@\" on port %hu...", host, hostPort);
     self.statusLabel.text = @"Connecting...";
