@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0712C7A4-C392-4999-9E53-F9E4C31547A1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>iMavLink</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>6A932C6F-6234-4B54-B44B-7DF03F8A7E5C</key>
+		<string>https://github.com/MrRocketman/iMavLink.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iMavLink.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>6A932C6F-6234-4B54-B44B-7DF03F8A7E5C</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/MrRocketman/iMavLink.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6A932C6F-6234-4B54-B44B-7DF03F8A7E5C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6A932C6F-6234-4B54-B44B-7DF03F8A7E5C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iMavLink</string>
+		</dict>
+	</array>
+</dict>
+</plist>
